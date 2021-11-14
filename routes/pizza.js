@@ -12,16 +12,15 @@ router.get("/getallpizzas", async (req, res) => {
 });
 
 router.post("/addpizza", async (req, res) => {
-  const pizza = req.body.pizza;
-
+  const pizza = req.body;
   try {
     const newpizza = new Pizza({
       name: pizza.name,
       image: pizza.image,
-      varients: ["small", "medium", "large"],
+      varients: pizza.varients,
       description: pizza.description,
       category: pizza.category,
-      prices: [pizza.prices],
+      prices: pizza.prices,
     });
     await newpizza.save();
     res.send("New Pizza Added Successfully");

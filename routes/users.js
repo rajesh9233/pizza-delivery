@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Users } = require("../schema");
 
+//register the new user
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -15,6 +16,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+//login using email and password
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -37,6 +39,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//get all the users
 router.get("/getusers", async (req, res) => {
   try {
     const users = await Users.find({});
@@ -46,11 +49,12 @@ router.get("/getusers", async (req, res) => {
   }
 });
 
+//delete user by userId
 router.post("/deleteuser", async (req, res) => {
-  const userid = req.body.userid;
+  const userId = req.body.userId;
 
   try {
-    await Users.findOneAndDelete({ _id: userid });
+    await Users.findOneAndDelete({ _id: userId });
     res.send("User Deleted Successfully");
   } catch (error) {
     return res.status(400).json({ message: error });

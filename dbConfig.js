@@ -1,12 +1,9 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(
-  "mongodb+srv://Rajesh:Rajesh12345@cluster0.sc8ug.mongodb.net/pizza-delivery-app",
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  }
-);
+mongoose.connect(process.env.DB_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 var db = mongoose.connection;
 
